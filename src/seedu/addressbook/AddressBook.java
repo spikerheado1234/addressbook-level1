@@ -133,6 +133,10 @@ public class AddressBook {
     private static final String COMMAND_EXIT_DESC = "Exits the program.";
     private static final String COMMAND_EXIT_EXAMPLE = COMMAND_EXIT_WORD;
 
+    private static final String COMMAND_LIST_DELETE_WORD = "listDelete";
+    private static final String COMMAND_LIST_DELETE_DESC = "Lists all users then deletes specificied user.";
+    private static final String COMMAND_LIST_DELETE_EXAMPLE = COMMAND_LIST_DELETE_WORD;
+
     private static final String DIVIDER = "===================================================";
 
 
@@ -383,6 +387,9 @@ public class AddressBook {
             return getUsageInfoForAllCommands();
         case COMMAND_EXIT_WORD:
             executeExitProgramRequest();
+        case COMMAND_LIST_DELETE_WORD:
+            executeListAllPersonsInAddressBook();
+            return executeDeletePerson(commandArgs);
         default:
             return getMessageForInvalidCommandInput(commandType, getUsageInfoForAllCommands());
         }
@@ -1088,7 +1095,8 @@ public class AddressBook {
                 + getUsageInfoForDeleteCommand() + LS
                 + getUsageInfoForClearCommand() + LS
                 + getUsageInfoForExitCommand() + LS
-                + getUsageInfoForHelpCommand();
+                + getUsageInfoForHelpCommand() + LS
+                + getUsageInfoForDeleteAndListCommand();
     }
 
     /** Returns the string for showing 'add' command usage instruction */
@@ -1134,6 +1142,11 @@ public class AddressBook {
     private static String getUsageInfoForExitCommand() {
         return String.format(MESSAGE_COMMAND_HELP, COMMAND_EXIT_WORD, COMMAND_EXIT_DESC)
                 + String.format(MESSAGE_COMMAND_HELP_EXAMPLE, COMMAND_EXIT_EXAMPLE);
+    }
+
+    private static String getUsageInfoForDeleteAndListCommand() {
+        return String.format(MESSAGE_COMMAND_HELP, COMMAND_LIST_DELETE_WORD, COMMAND_LIST_DELETE_DESC)
+                + String.format(MESSAGE_COMMAND_HELP_EXAMPLE, COMMAND_LIST_DELETE_EXAMPLE);
     }
 
 
